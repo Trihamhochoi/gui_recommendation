@@ -12,11 +12,11 @@
     - user ID
     - Rating of Product by User
 
-  ![Untitled](DATA\report_md\Image_report\Untitled.png)
+  ![Untitled](DATA/report_md/Image_report/Untitled.png)
     
 - Description of Men Fashion Product in Shopee: (prd_des_df)
 
-  ![Untitled](DATA\report_md\Image_report\Untitled1.png)
+  ![Untitled](DATA/report_md/Image_report/Untitled1.png)
     
 
 ### **Data Cleaning:**
@@ -27,24 +27,24 @@
     - Check unique values all columns
     - View Distribution of “Rating”
     
-    ![Untitled](DATA\report_md\Image_report\Untitled2.png)
+    ![Untitled](DATA/report_md/Image_report/Untitled2.png)
     
     - Drop some products with low rating and drop users with one purchase record.
     - Transform to Final Detail Dataframe and save to file CSV for using later.
         
-        ![Untitled](DATA\report_md\Image_report\Untitled3.png)
+        ![Untitled](DATA/report_md/Image_report/Untitled3.png)
         
 - Products_Description:
     - Check NA values, unique values of all columns.
         
-        ![Untitled](DATA\report_md\Image_report\Untitled4.png)
+        ![Untitled](DATA/report_md/Image_report/Untitled4.png)
         
     - Drop duplicates in “product_id” and remove all null values of “description”
     - Drop some unnecessary columns: 'category', 'link', 'image’
     - Clean Text: use package “underthesea” and apply some methods for cleansing Text in “description” and “Product_name”. Then Transform them into “clean_desc” and “clean_prd_name”
     - Export the final version to prepare for next step
     
-    ![Untitled](DATA\report_md\Image_report\Untitled5.png)
+    ![Untitled](DATA/report_md/Image_report/Untitled5.png)
     
 
 **Export to two cleaned file csv in order to use in build 2 Recommended System: Content-base and Collaborative Filtering.**
@@ -64,7 +64,7 @@
     - _rank = 20
 - Evaluate the model according to Test set:
     
-    ![Untitled](DATA\report_md\Image_report\Untitled6.png)
+    ![Untitled](DATA/report_md/Image_report/Untitled6.png)
     
     <aside>
     💡 **The performance of this model is relatively slow, and I frequently encounter memory usage errors when using PySpark. Additionally, the root mean error is somewhat high at 1.24.
@@ -97,7 +97,7 @@ def make_recommendation(usr_id,result_: pd.DataFrame):
         return None
 ```
 
-![Untitled](DATA\report_md\Image_report\Untitled7.png)
+![Untitled](DATA/report_md/Image_report/Untitled7.png)
 
 - **make recommendations to some users:**
     
@@ -167,7 +167,7 @@ def make_recommendation(usr_id,result_: pd.DataFrame):
     
 5. **Build function to Recommendation:** We predict a user's interest in an item based on the interests of similar users with rating greater than 3.
 
-![Untitled](DATA\report_md\Image_report\Untitled8.png)
+![Untitled](DATA/report_md/Image_report/Untitled8.png)
 
 # Part 3: Content-based Filtering
 
@@ -176,7 +176,7 @@ def make_recommendation(usr_id,result_: pd.DataFrame):
 1. Check NA and clean data
 2. Create the word dictionary and Corpus
 
-![Untitled](DATA\report_md\Image_report\Untitled9.png)
+![Untitled](DATA/report_md/Image_report/Untitled9.png)
 
 1. Apply Model TFIDF
 2. Save **tfidf_model, corpus_dictionary, similarity_matrix.index**
@@ -189,7 +189,7 @@ def make_recommendation(usr_id,result_: pd.DataFrame):
 4. Calcuate cosine_similarity
 5. Build function recommend_cosine 
 
-![Untitled](DATA\report_md\Image_report\Untitled10.png)
+![Untitled](DATA/report_md/Image_report/Untitled10.png)
 
 1. Save tfidf_vectorizer of all products and tfidf_matrix.npz, which is sparsed matrix of all products
 
@@ -197,7 +197,7 @@ def make_recommendation(usr_id,result_: pd.DataFrame):
 
 1. Build a class Cleanser to clean text
 
-![Untitled](DATA\report_md\Image_report\Untitled11.png)
+![Untitled](DATA/report_md/Image_report/Untitled11.png)
 
 - Build Function to recommend product by Gensim and Similarity
     
@@ -311,16 +311,16 @@ def make_recommendation(usr_id,result_: pd.DataFrame):
     - Load model, word dictionary and similarity matrix
     - Get all products with high correlation
     
-    ![Untitled](DATA\report_md\Image_report\Untitled12.png)
+    ![Untitled](DATA/report_md/Image_report/Untitled12.png)
     
 - Apply Consine model
     - Load model, word dictionary and similarity matrix
     - Get all products with high correlation
     
-    ![Untitled](DATA\report_md\Image_report\Untitled13.png)
+    ![Untitled](DATA/report_md/Image_report/Untitled13.png)
     
 - Combine both model get outer:
     
     Merge outer between 2 datframes
     
-    ![Untitled](DATA\report_md\Image_report\Untitled14.png)
+    ![Untitled](DATA/report_md/Image_report/Untitled14.png)
